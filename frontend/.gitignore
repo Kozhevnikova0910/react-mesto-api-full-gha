@@ -1,0 +1,5 @@
+/installAllLib.sh
+node_modules/
+dist/
+/build
+.idea

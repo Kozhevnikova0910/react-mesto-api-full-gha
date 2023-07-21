@@ -1,0 +1,12 @@
+.profile__name-edit {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 450px;
+}
+
+@media (max-width: 850px) {
+    .profile__name-edit {
+        max-width: 350px;
+    }
+}
