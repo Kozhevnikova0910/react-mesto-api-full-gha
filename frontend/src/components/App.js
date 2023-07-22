@@ -29,7 +29,7 @@ function App() {
         name: '',
         link: ''
     });
-    const [currentUser, setCurrentUser] = React.useState({});
+    const [currentUser, setCurrentUser] = React.useState(CurrentUserContext);
 
     const [cards, setCards] = React.useState([])
 
@@ -82,7 +82,7 @@ function App() {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
 
         // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, isLiked)
@@ -176,7 +176,7 @@ function App() {
                     if (res) {
                         setLoggedIn(true);
                         setCurrentUser({
-                            _id: res.id,
+                            _id: res._id,
                             name: res.name,
                             about: res.about,
                             avatar: res.avatar,
@@ -191,6 +191,7 @@ function App() {
 
     function signOut() {
         localStorage.removeItem('token');
+        setCurrentUser({});
         setLoggedIn(false);
     }
 
